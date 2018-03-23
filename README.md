@@ -18,3 +18,7 @@ Where `your_login` and `your_password` are not the same as the credential you us
 5. Click on 'new' and create new access entry.
 
 Note that you can adjust the data refresh rate by [setting](https://home-assistant.io/docs/configuration/platform_options/#scan-interval) the `scan_interval` in the above config.
+
+<p align="center">
+<img src="https://github.com/robmarkcole/HASS-SigFox/blob/master/images/usage.png" width="500">
+</p>
