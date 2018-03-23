@@ -1,5 +1,5 @@
 # HASS-SigFox
-[SigFox](https://www.sigfox.com/en) component for Home-Assistant, adding a sensor for each SigFox device. Place the `custom_components` folder in your configuration directory (or add its contents to an existing custom_components folder). The component uses the [SigFox REST API](https://resources.sigfox.com/document/backend-api-documentation), and by default refreshes the data in the sensor every 30 seconds.  
+[SigFox](https://www.sigfox.com/en) component for [Home-Assistant](https://home-assistant.io/), adding a [sensor]() for each SigFox device. Place the `custom_components` folder in your configuration directory (or add its contents to an existing custom_components folder). The component uses the [SigFox REST API](https://resources.sigfox.com/document/backend-api-documentation), and by default refreshes the data in the sensor every 30 seconds.  
 
 Add to your config:
 ```yaml
