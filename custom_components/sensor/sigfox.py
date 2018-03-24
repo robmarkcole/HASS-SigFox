@@ -95,7 +95,7 @@ class SigfoxDevice(Entity):
         self._device_id = device_id
         self._auth = auth
         self._data = {}
-        self._name = device_id + '_sigfox'
+        self._name = 'sigfox_' + device_id
         self._state = None
 
     def get_last_message(self):
