@@ -32,7 +32,6 @@ class TestSigfoxSensor(unittest.TestCase):
     def setUp(self):
         """Initialize values for this testcase class."""
         self.hass = get_test_home_assistant()
-        self.config = VALID_CONFIG
 
     def tearDown(self):
         """Stop everything that was started."""
@@ -40,23 +39,15 @@ class TestSigfoxSensor(unittest.TestCase):
 
     def test_invalid_credentials(self):
         """Test for a invalid credentials."""
-
-        self.assertTrue(
-            setup_component(self.hass, 'sensor', VALID_CONFIG))
-
         with requests_mock.Mocker() as mock_req:
             url = re.compile(API_URL + 'devicetypes')
             mock_req.get(url, text='{}', status_code=401)
             self.assertTrue(
-                setup_component(self.hass, 'sensor', {'sensor': self.config}))
+                setup_component(self.hass, 'sensor', VALID_CONFIG))
         assert len(self.hass.states.entity_ids()) == 0
 
     def test_valid_credentials(self):
         """Test for a valid credentials."""
-
-        self.assertTrue(
-            setup_component(self.hass, 'sensor', VALID_CONFIG))
-
         with requests_mock.Mocker() as mock_req:
             url1 = re.compile(API_URL + 'devicetypes')
             mock_req.get(url1, text='{"data":[{"id":"fake_type"}]}',
@@ -65,13 +56,13 @@ class TestSigfoxSensor(unittest.TestCase):
             url2 = re.compile(API_URL + 'devicetypes/fake_type/devices')
             mock_req.get(url2, text='{"data":[{"id":"fake_id"}]}')
 
-            url3 = re.compile(API_URL + 'devices/fake_id/messages?limit=1')
+            url3 = re.compile(API_URL + 'devices/fake_id/messages*')
             mock_req.get(url3, text=VALID_MESSAGE)
 
             self.assertTrue(
-                setup_component(self.hass, 'sensor', {'sensor': self.config}))
+                setup_component(self.hass, 'sensor', VALID_CONFIG))
 
             assert len(self.hass.states.entity_ids()) == 1
             state = self.hass.states.get('sensor.sigfox_fake_id')
             assert state.state == 'payload'
-#        assert state.attributes.get('bytes') == 4
+            assert state.attributes.get('snr') == '50.0'
