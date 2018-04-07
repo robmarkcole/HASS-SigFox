@@ -54,6 +54,8 @@ class SigfoxAPI(object):
         if r.status_code != 200:
             _LOGGER.warning(
                 "Unable to login to Sigfox API: " + str(r.status_code))
+            self._devices = []
+            return
         device_types = self.get_device_types()
         self._devices = self.get_devices(device_types)
 
@@ -122,7 +124,7 @@ class SigfoxDevice(Entity):
 
     @property
     def name(self):
-        """Return the name of the sensor."""
+        """Return the HA name of the sensor."""
         return self._name
 
     @property
