@@ -71,7 +71,7 @@ class TestSigfoxSensor(unittest.TestCase):
             self.assertTrue(
                 setup_component(self.hass, 'sensor', {'sensor': self.config}))
 
-            #assert len(self.hass.states.entity_ids()) == 1
-#        state = self.hass.states.get('sensor.mock_file_test_filesizetxt')
-#        assert state.state == '0.0'
+            assert len(self.hass.states.entity_ids()) == 1
+            state = self.hass.states.get('sensor.sigfox_fake_id')
+            assert state.state == 'payload'
 #        assert state.attributes.get('bytes') == 4
