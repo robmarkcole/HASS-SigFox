@@ -19,6 +19,11 @@ Where `your_login` and `your_password` are not the same as the credential you us
 
 Note that you can adjust the data refresh rate by [setting](https://home-assistant.io/docs/configuration/platform_options/#scan-interval) the `scan_interval` in the above config.
 
+## Payload
+It is recommended that you configure your SigFox device to send JSON formatted data in the payload. For example, I am using a micropython board and sending the time in the payload `{time:1151}`. In Home-Assistant my sigfox sensor is named `sigfox_4d30a7` and I can access the time in the payload using the template `{{states.sensor.sigfox_4d30a7.state.time}}`. I created a template sensor with the following config:
+
+
+
 <p align="center">
 <img src="https://github.com/robmarkcole/HASS-SigFox/blob/master/images/usage.png" width="500">
 </p>
