@@ -22,3 +22,5 @@ Note that you can adjust the data refresh rate by [setting](https://home-assista
 <p align="center">
 <img src="https://github.com/robmarkcole/HASS-SigFox/blob/master/images/usage.png" width="500">
 </p>
+
+UPDATE: Merged into HA 0.68 https://www.home-assistant.io/blog/2018/04/27/release-68/
